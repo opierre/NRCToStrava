@@ -4,9 +4,9 @@ Script to export/convert/upload run activities from Nike Run Club to Strava
 
 ## Requirements
 
-* **Python 3**: 
-    * [stravalib](https://pypi.org/project/stravalib/) package (*version >= 0.10.2*)
-    * [jq](https://pypi.org/project/jq/) package (*version >= 1.0.0*)
+* **Python 3**: All requirements are set in [requirements.txt](https://github.com/opierre/NRCToStrava/tree/master/requirements.txt)
+  
+* **Command-line JSON processor**: download and install [jq](https://github.com/stedolan/jq/releases) (*version >= 1.6*)
   
 * **Strava**:
     * In order to upload NRC running data to Strava, it is required to make an application as explained 
@@ -30,7 +30,7 @@ All Nike+ API is explained in
 Uploading a run to Strava requires your Client ID, Client Secret and an access token with write permission:
  
 * Client Secret and Client ID can be found in *My API Application>Client Secret/Client ID* and should be written in 
-[.stravaupload.cfg](https://github.com/polivier2/NRCToStrava/tree/master/scripts/.stravaupload.cfg) next to 
+[.stravaupload.cfg](https://github.com/opierre/NRCToStrava/tree/master/scripts/.stravaupload.cfg) next to 
 *clientsecret* and *clientid* keys. 
  
 * In order to generate access token:
@@ -41,7 +41,7 @@ Uploading a run to Strava requires your Client ID, Client Secret and an access t
     * On next page you will get an error but in the URL there is a code: 
     *exchange_token?state=&code=**e2989f17559e073d84ec532db782121519f4f03d**&scope=read,activity:write,profile:write*
     * Copy that code in 
-[.stravaupload.cfg](https://github.com/polivier2/NRCToStrava/tree/master/scripts/.stravaupload.cfg) next to 
+[.stravaupload.cfg](https://github.com/opierre/NRCToStrava/tree/master/scripts/.stravaupload.cfg) next to 
 *token* key. 
 
 ### Run bash script

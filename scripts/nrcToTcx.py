@@ -40,7 +40,8 @@ def export(_tcxObject, _startTime, _activityID):
     """ Export TCX object to export directory as .tcx file """
 
     ''' Find directory where are will be stored TCX exports '''
-    exportDir = os.path.join(os.path.dirname(__file__), '..\\TCX_exports')
+    scriptsDir = os.path.dirname(os.path.abspath(__file__))
+    exportDir = os.path.join(os.path.dirname(scriptsDir), 'TCX_exports')
     if not os.path.exists(exportDir):
         os.makedirs(exportDir)
 

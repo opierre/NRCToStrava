@@ -24,7 +24,7 @@ convertNRCToTCX() {
 }
 
 uploadTCXToStrava() {
-  python ./scripts/stravaupload.py "./TCX_exports"
+  python ./scripts/stravaupload.py
 }
 
 printf "\n+--------------------------------------------------+"
@@ -41,7 +41,7 @@ while true; do
     url="https://api.nike.com/sport/v3/me/activities/after_id/${after_id}"
   fi
 
-  printf "\nFetch $url..."
+  printf "\nFetch %s..." "$url"
   nike_plus_api "$url" > "./NRC_activities/$activities_file"
 
   activity_ids=("${activity_ids[@]}" $(jq -r ".activities[].id" "./NRC_activities/$activities_file"))
@@ -63,9 +63,9 @@ for activity_id in ${activity_ids[@]}; do
   activityId=${activity_id//$'\r'/}
   url="https://api.nike.com/sport/v3/me/activity/${activity_id//$'\r'/}?metrics=ALL"
 
-  printf "\nFetching $url...\n"
+  printf "\nFetching %s...\n" "$url"
   nike_plus_api "$url" > "./NRC_activities/$activity_file"
-  printf "\nConverting ${activity_file//$'\r'/}...\n"
+  printf "\nConverting %s...\n" "${activity_file//$'\r'/}"
   convertNRCToTCX "$activityId"
 
 done

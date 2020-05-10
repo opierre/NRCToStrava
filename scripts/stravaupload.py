@@ -60,15 +60,23 @@ def main():
     )
 
     """ Check if input is a single file or a directory """
-    if os.path.isfile(sys.argv[1]):
-        uploadFile(stravaClient, sys.argv[1])
-    elif os.path.isdir(sys.argv[1]):
-        filenames = glob.glob(str(sys.argv[1]) + r'\*.tcx')
+    if len(sys.argv) == 1:
+        ''' Find directory where are stored TCX converted files '''
+        tcxDir = os.path.join(os.getcwd(), 'TCX_exports')
+
+        ''' Set TCX pattern to finf files ending with .tcx '''
+        tcxPattern = os.path.join(tcxDir, '*.tcx')
+        filenames = glob.glob(tcxPattern)
+
         if len(filenames) == 0:
             sys.exit('No .tcx found in ' + str(sys.argv[1]) + ' directory')
         else:
             for idx, filename in enumerate(filenames):
                 uploadFile(stravaClient, filename)
+    elif os.path.isfile(sys.argv[1]):
+        uploadFile(stravaClient, sys.argv[1])
+    else:
+        sys.exit('usage: stravaupload.py <filename.tcx>')
 
 
 if __name__ == '__main__':
